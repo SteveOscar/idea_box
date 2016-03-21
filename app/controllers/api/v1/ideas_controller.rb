@@ -10,7 +10,7 @@ class Api::V1::IdeasController < Api::V1::BaseController
   end
 
   def create
-    respond_with Idea.create(item_params), location: nil
+    respond_with Idea.create(idea_params), location: nil
   end
 
   def update
@@ -25,6 +25,6 @@ class Api::V1::IdeasController < Api::V1::BaseController
   private
 
   def idea_params
-    params.require(:idea).permit(:id, :title, :body, :quality)
+    params.require(:idea).permit(:title, :body)
   end
 end

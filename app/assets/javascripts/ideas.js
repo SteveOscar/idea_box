@@ -1,22 +1,30 @@
 $(document).ready(function(){
+  getIdeas();
+  createIdea();
+})
 
   function renderIdea(idea){
-    $('#all-ideas').append(
+    $('#all-ideas').prepend(
       "<div class='idea' data-id='" +
       idea.id +
       "'><h6>Published on: " +
       idea.created_at +
-      "</h6><p>" +
+      "</h6><p>Title: " +
+      idea.title +
+      "</p>" +
+      "</h6><p>Body: " +
       idea.body +
       "</p>" +
+      "</h6><p>Quality: " +
+      idea.quality +
+      "</p>" +
       "<button id='delete-idea' name='button-fetch' class='btn btn-default btn-xs'>Delete</button>" +
-      "</div>"
+      "</div><br>"
     )
   }
 
   function getIdeas(){
     $.getJSON('/api/v1/ideas', function(ideas){
-      console.log(ideas);
       $.each(ideas, function(index, idea){
         renderIdea(idea);
       })
@@ -29,7 +37,6 @@ $(document).ready(function(){
     getIdeas()
   });
 
-})
 
 // function deleteIdea() {
 //   $('#all-ideas').delegate('#delete-idea', 'click', function(){
@@ -46,25 +53,3 @@ $(document).ready(function(){
 //     })
 //   })
 // }
-
-//
-// $("#create-idea").on('click', function(){
-//   var ideaParams = {
-//     idea: {
-//       title: $("#idea-title").val(),
-//       body: $("#idea-body").val(),
-//       quality: $("#idea-quality").val()
-//     }
-//   }
-//   $.ajax({
-//     type: 'POST',
-//     url : 'https://idea-box-of-dreams.herokuapp.com/api/v1/ideas.json',
-//     data: ideaParams,
-//     success: function(newIdea) {
-//       renderIdea(newIdea)
-//     },
-//     error: function(xhr) {
-//       console.log(xhr.responseText)
-//     }
-//   })
-// })
