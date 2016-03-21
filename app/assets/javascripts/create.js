@@ -1,6 +1,5 @@
 function createIdea() {
   $("#create-idea").on('click', function(){
-    console.log('create clicked')
     var ideaParams = {
       idea: {
         title: $("#idea-title").val(),

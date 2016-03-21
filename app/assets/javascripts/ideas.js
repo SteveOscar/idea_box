@@ -1,6 +1,7 @@
 $(document).ready(function(){
   getIdeas();
   createIdea();
+  deleteIdea();
 })
 
   function renderIdea(idea){
@@ -36,20 +37,3 @@ $(document).ready(function(){
   $('#fetch-ideas').click(function() {
     getIdeas()
   });
-
-
-// function deleteIdea() {
-//   $('#all-ideas').delegate('#delete-idea', 'click', function(){
-//     var $idea = $(this).closest(".idea")
-//     $.ajax({
-//       type: 'DELETE',
-//       url : 'https://idea-box-of-dreams.herokuapp.com/api/v1/ideas/' + $idea.attr('data-id') + '.json',
-//       success: function(){
-//         $idea.remove()
-//       },
-//       error: function(xhr) {
-//         console.log(xhr.responseText)
-//       }
-//     })
-//   })
-// }
