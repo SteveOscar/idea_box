@@ -32,7 +32,6 @@ function UpdateDatabase(ideaParams, id, $idea) {
     url : '/api/v1/ideas/' + id + '.json',
     data: ideaParams,
     success: function(idea) {
-      console.log('idea updated')
       $('.title' + id).text(ideaParams.idea.title);
       $('.body' + id).text(ideaParams.idea.body);
       toggleElements($idea);

@@ -2,6 +2,7 @@ $(document).ready(function(){
   getIdeas();
   createIdea();
   deleteIdea();
+  searchIdeas();
 })
 
 function renderIdea(idea){
@@ -26,7 +27,7 @@ function renderIdea(idea){
     "<button id='thumbs-down' name='button-fetch' class='btn btn-default btn-xs'>Thumbs Down</button>" +
     "<button id='edit"+ idea.id + "' name='button-fetch' class='edit btn btn-default btn-xs'>Edit</button>" +
     "<button id='save"+ idea.id + "' class='red save' name='button-fetch' class='btn btn-default btn-xs'>Save</button>" +
-    "</div><br>"
+    "</div>"
   )
 }
 
