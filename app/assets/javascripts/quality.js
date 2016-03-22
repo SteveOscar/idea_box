@@ -10,7 +10,6 @@ function newDownQuality(idea) {
   if (idea.quality == 2) {return 1 };
 };
 
-
 $('#all-ideas').delegate('#thumbs-up', 'click', function(){
   var $idea = $(this).closest(".idea");
   $.getJSON('/api/v1/ideas/' + $idea.attr('data-id') + '.json').done(function(idea) {
@@ -30,14 +29,13 @@ $('#all-ideas').delegate('#thumbs-down', 'click', function(){
 })
 
 function updateQuality(level, $idea) {
+  var id = $idea.attr('data-id')
   $.ajax({
     type: 'PUT',
-    url : '/api/v1/ideas/' + $idea.attr('data-id') + '.json',
-    data : { idea : {id: $idea.id,
-                     quality: level}
-            },
+    url : '/api/v1/ideas/' + id + '.json',
+    data : { idea : { quality: level} },
     success: function(){
-      $idea.remove()
+      $('.quality' + id).text('Quality: ' + convertQuality(level));
     },
     error: function(xhr) {
       console.log(xhr.responseText)

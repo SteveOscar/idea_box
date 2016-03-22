@@ -16,14 +16,20 @@ $(document).ready(function(){
       "</h6><p>Body: " +
       idea.body +
       "</p>" +
-      "</h6><p>Quality: " +
-      idea.quality +
+      "</h6><p class='quality"+ idea.id + "'>Quality: " +
+      convertQuality(idea.quality) +
       "</p>" +
       "<button id='delete-idea' name='button-fetch' class='btn btn-default btn-xs'>Delete</button>" +
       "<button id='thumbs-up' name='button-fetch' class='btn btn-default btn-xs'>Thumbs Up</button>" +
       "<button id='thumbs-down' name='button-fetch' class='btn btn-default btn-xs'>Thumbs Down</button>" +
       "</div><br>"
     )
+  }
+
+  function convertQuality(quality) {
+    if (quality == 0) {return 'Swill' };
+    if (quality == 1) {return 'Plausible' };
+    if (quality == 2) {return 'Genius' };
   }
 
   function getIdeas(){
