@@ -20,6 +20,8 @@ $(document).ready(function(){
       idea.quality +
       "</p>" +
       "<button id='delete-idea' name='button-fetch' class='btn btn-default btn-xs'>Delete</button>" +
+      "<button id='thumbs-up' name='button-fetch' class='btn btn-default btn-xs'>Thumbs Up</button>" +
+      "<button id='thumbs-down' name='button-fetch' class='btn btn-default btn-xs'>Thumbs Down</button>" +
       "</div><br>"
     )
   }
@@ -31,9 +33,4 @@ $(document).ready(function(){
       })
     })
   };
-
-  getIdeas()
-
-  $('#fetch-ideas').click(function() {
-    getIdeas()
-  });
+  //
