@@ -3,6 +3,8 @@ $(document).ready(function(){
   createIdea();
   deleteIdea();
   searchIdeas();
+  editTitle();
+  editBody();
 })
 
 function renderIdea(idea){
@@ -11,10 +13,10 @@ function renderIdea(idea){
     idea.id +
     "'><h6>Published on: " +
     idea.created_at +
-    "</h6><p class='title"+ idea.id + "'>Title: " +
+    "</h6><h6>Title: </h6><p class='title title"+ idea.id + "'>" +
     idea.title +
     "</p>" +
-    "</h6><p class='body"+ idea.id + "'>Body: " +
+    "</h6><h6>Body: </h6><p class='body body"+ idea.id + "'>" +
     idea.body +
     "</p>" +
     "</h6><p class='quality"+ idea.id + "'>Quality: " +
@@ -25,8 +27,6 @@ function renderIdea(idea){
     "<button class='btn btn-default btn-xs delete-idea'>Delete</button>" +
     "<button id='thumbs-up' class='btn btn-default btn-xs'>Thumbs Up</button>" +
     "<button id='thumbs-down' class='btn btn-default btn-xs'>Thumbs Down</button>" +
-    "<button id='edit"+ idea.id + "' class='edit btn btn-default btn-xs'>Edit</button>" +
-    "<button id='save"+ idea.id + "' class='red save' class='btn btn-default btn-xs'>Save</button>" +
     "</div>"
   )
 }
