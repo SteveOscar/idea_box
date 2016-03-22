@@ -1,32 +1,15 @@
-function newUpQuality(idea) {
-  if (idea.quality == 0) {return 1 };
-  if (idea.quality == 1) {return 2 };
-  if (idea.quality == 2) {return 2 };
-};
+function bindEventListenerToQualityButton(selector, listener) {
+  $('#all-ideas').on('click', selector, function(){
+    var $idea = $(this).closest(".idea");
+    $.getJSON('/api/v1/ideas/' + $idea.attr('data-id') + '.json').then(function(idea) {
+      level = listener(idea);
+      updateQuality(level, $idea);
+    });
+  });
+}
 
-function newDownQuality(idea) {
-  if (idea.quality == 0) {return 0 };
-  if (idea.quality == 1) {return 0 };
-  if (idea.quality == 2) {return 1 };
-};
-
-$('#all-ideas').delegate('#thumbs-up', 'click', function(){
-  var $idea = $(this).closest(".idea");
-  $.getJSON('/api/v1/ideas/' + $idea.attr('data-id') + '.json').done(function(idea) {
-    console.log('quality: ' + idea.quality)
-    level = newUpQuality(idea);
-    updateQuality(level, $idea);
-  })
-})
-
-$('#all-ideas').delegate('#thumbs-down', 'click', function(){
-  var $idea = $(this).closest(".idea");
-  $.getJSON('/api/v1/ideas/' + $idea.attr('data-id') + '.json').done(function(idea) {
-    console.log('quality: ' + idea.quality)
-    level = newDownQuality(idea);
-    updateQuality(level, $idea);
-  })
-})
+bindEventListenerToQualityButton('#thumbs-up', newUpQuality);
+bindEventListenerToQualityButton('#thumbs-down', newDownQuality);
 
 function updateQuality(level, $idea) {
   var id = $idea.attr('data-id')
@@ -42,3 +25,17 @@ function updateQuality(level, $idea) {
     }
   })
 }
+
+function newUpQuality(idea) {
+  var shift = { 0: 1,
+                1: 2,
+                2: 2 }
+  return shift[idea.quality];
+};
+
+function newDownQuality(idea) {
+  var shift = { 0: 0,
+                1: 0,
+                2: 1 };
+  return shift[idea.quality];
+};

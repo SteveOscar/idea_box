@@ -23,7 +23,6 @@ function updateIdea(id) {
     }
     UpdateDatabase(ideaParams, id, $idea);
   })
-  // clearInputs();
 }
 
 function UpdateDatabase(ideaParams, id, $idea) {
