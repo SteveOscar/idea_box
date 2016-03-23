@@ -4,23 +4,26 @@ function bindListenerToBodyAndTitle(selector) {
     var $idea = $(this).closest(".idea");
     var id = $idea.attr('data-id');
     var that = this;
+    $(this).focusout(function(){ captureEdit($idea, id) } )
     $(document).keypress(function(e) {
-    if(e.which == 13) {
-      var ideaParams = {
-        idea: {
-          title: $($idea).children(".title").text(),
-          body: $($idea).children(".body").text()
-        }
-      }
-      UpdateDatabase(ideaParams, id, $idea);
-      that.contentEditable = "false";
-      }
+      if(e.which == 13) { captureEdit($idea, id, that) }
     });
   })
 }
 
 bindListenerToBodyAndTitle('.title')
 bindListenerToBodyAndTitle('.body')
+
+function captureEdit($idea, id, that) {
+  var ideaParams = {
+    idea: {
+      title: $($idea).children(".title").text(),
+      body: $($idea).children(".body").text()
+    }
+  }
+  UpdateDatabase(ideaParams, id, $idea);
+  that.contentEditable = "false";
+}
 
 function UpdateDatabase(ideaParams, id, $idea) {
   $.ajax({
