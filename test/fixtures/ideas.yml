@@ -1,10 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   title: Idea 1 Title
   body: Idea 1 Body
 
 two:
+  id: 2
   title: Idea 2 Title
   body: Idea 2 Body
   quality: 1

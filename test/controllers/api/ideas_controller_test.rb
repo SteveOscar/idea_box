@@ -3,17 +3,17 @@ require 'test_helper'
 class Api::V1::IdeasControllerTest < ActionController::TestCase
   test "#index" do
     get :index, format: :json
+    idea_count = Idea.count
 
     ideas = JSON.parse(response.body)
-    sample_idea = ideas.first
+    sample_idea = ideas.last
+    response_count = ideas.count
 
     assert_response :success
-    assert_equal 2, ideas.count
-    assert_equal sample_idea["title"], "Idea 1 Title"
-    assert_equal sample_idea["body"], "Idea 1 Body"
-    assert_equal sample_idea["quality"], 0
-    assert sample_idea["created_at"]
-    assert sample_idea["updated_at"]
+    assert_equal idea_count, response_count
+    assert_equal sample_idea["title"], Idea.first.title
+    assert_equal sample_idea["body"], Idea.first.body
+    assert_equal sample_idea["quality"], Idea.first.quality
   end
 
   test "#show" do
@@ -23,11 +23,12 @@ class Api::V1::IdeasControllerTest < ActionController::TestCase
 
     idea = JSON.parse(response.body)
 
+
     assert_response :success
-    assert_equal id, idea["id"]
-    assert_equal idea["title"], "Idea 1 Title"
-    assert_equal idea["body"], "Idea 1 Body"
-    assert_equal idea["quality"], 0
+    assert idea["id"]
+    assert idea["title"]
+    assert idea["body"]
+    assert idea["quality"]
   end
 
   test "#destroy" do
