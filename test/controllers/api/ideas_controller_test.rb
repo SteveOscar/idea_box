@@ -4,64 +4,75 @@ class Api::V1::IdeasControllerTest < ActionController::TestCase
   test "#index" do
     get :index, format: :json
 
-    items = JSON.parse(response.body)
-    sample_item = items.first
+    ideas = JSON.parse(response.body)
+    sample_idea = ideas.first
 
     assert_response :success
-    assert_equal 2, items.count
-    assert_equal sample_item["name"], "Heavy Cotton Pants"
-    assert_equal sample_item["description"], "heavy when wet"
-    assert sample_item["image_url"]
-    refute sample_item["created_at"]
-    refute sample_item["updated_at"]
+    assert_equal 2, ideas.count
+    assert_equal sample_idea["title"], "Idea 1 Title"
+    assert_equal sample_idea["body"], "Idea 1 Body"
+    assert_equal sample_idea["quality"], 0
+    assert sample_idea["created_at"]
+    assert sample_idea["updated_at"]
   end
 
   test "#show" do
-    id = Item.first.id
+    id = Idea.last.id
 
     get :show, id: id, format: :json
 
-    items = JSON.parse(response.body)
+    idea = JSON.parse(response.body)
 
     assert_response :success
-    assert_equal 1, items["id"]
-    assert_equal items["name"], "Heavy Cotton Pants"
-    assert_equal items["description"], "heavy when wet"
-    assert items["image_url"]
-    refute items["created_at"]
-    refute items["updated_at"]
+    assert_equal id, idea["id"]
+    assert_equal idea["title"], "Idea 1 Title"
+    assert_equal idea["body"], "Idea 1 Body"
+    assert_equal idea["quality"], 0
   end
 
   test "#destroy" do
-    id = Item.first.id
-    start_item_count = Item.count
+    id = Idea.first.id
+    start_idea_count = Idea.count
 
     delete :destroy, id: id, format: :json
-    end_item_count = Item.count
+    end_idea_count = Idea.count
 
     assert_response(204)
-    assert end_item_count < start_item_count
+    assert end_idea_count < start_idea_count
+  end
+
+  test "#update" do
+    id = Idea.first.id
+    start_idea_title = Idea.first.title
+    idea_params = {title: "truck"}
+
+    patch :update, id: id, idea: idea_params, format: :json
+    end_idea_title = Idea.first.title
+
+    assert_response(200)
+    assert end_idea_title != start_idea_title
+    assert_equal end_idea_title, "truck"
   end
 
   test "#create" do
-    start_item_count = Item.count
-    item_params = {name: "truck", description: "so fast", image_url: "www.example.com"}
-    post :create, item: item_params, format: :json
+    start_idea_count = Idea.count
+    idea_params = {title: "truck", body: "so fast"}
+    post :create, idea: idea_params, format: :json
 
-    end_item_count = Item.count
+    end_idea_count = Idea.count
 
     assert_response(201)
-    assert end_item_count > start_item_count
-    assert_equal Item.last.name, "truck"
+    assert end_idea_count > start_idea_count
+    assert_equal Idea.last.title, "truck"
   end
 
   test "#create with invalid params" do
-    start_item_count = Item.count
-    item_params = {created_at: "truck", updated_at: "so fast", image_url: "www.example.com"}
-    post :create, item: item_params, format: :json
+    start_idea_count = Idea.count
+    idea_params = {created_at: "truck", updated_at: "so fast", image_url: "www.example.com"}
+    post :create, idea: idea_params, format: :json
 
-    end_item_count = Item.count
+    end_idea_count = Idea.count
 
-    assert_equal end_item_count, start_item_count
+    assert_equal end_idea_count, start_idea_count
   end
 end
