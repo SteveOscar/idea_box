@@ -18,6 +18,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'launchy'
+  gem 'simplecov', :require => false
 end
 
 group :development do
