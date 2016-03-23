@@ -3,8 +3,6 @@ $(document).ready(function(){
   createIdea();
   deleteIdea();
   searchIdeas();
-  editTitle();
-  editBody();
 })
 
 function renderIdea(idea){
@@ -13,10 +11,10 @@ function renderIdea(idea){
     idea.id +
     "'><h6>Published on: " +
     idea.created_at +
-    "</h6><h6>Title: </h6><p class='title title"+ idea.id + "'>" +
+    "</h6><h6 class='heading'>Title: </h6><p class='title title"+ idea.id + "'>" +
     idea.title +
     "</p>" +
-    "</h6><h6>Body: </h6><p class='body body"+ idea.id + "'>" +
+    "</h6><h6 class='heading'>Body: </h6><p class='body body"+ idea.id + "'>" +
     idea.body +
     "</p>" +
     "</h6><p class='quality"+ idea.id + "'>Quality: " +

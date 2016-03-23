@@ -1,5 +1,5 @@
-function editTitle() {
-  $('#all-ideas').on('click', '.title', function(){
+function bindListenerToBodyAndTitle(selector) {
+  $('#all-ideas').on('click', selector, function(){
     this.contentEditable = "true";
     var $idea = $(this).closest(".idea");
     var id = $idea.attr('data-id');
@@ -19,26 +19,8 @@ function editTitle() {
   })
 }
 
-function editBody() {
-  $('#all-ideas').on('click', '.body', function(){
-    this.contentEditable = "true";
-    var $idea = $(this).closest(".idea");
-    var id = $idea.attr('data-id');
-    var that = this;
-    $(document).keypress(function(e) {
-    if(e.which == 13) {
-      var ideaParams = {
-        idea: {
-          title: $($idea).children(".title").text(),
-          body: $($idea).children(".body").text()
-        }
-      }
-      UpdateDatabase(ideaParams, id, $idea);
-      that.contentEditable = "false";
-      }
-    });
-  })
-}
+bindListenerToBodyAndTitle('.title')
+bindListenerToBodyAndTitle('.body')
 
 function UpdateDatabase(ideaParams, id, $idea) {
   $.ajax({
