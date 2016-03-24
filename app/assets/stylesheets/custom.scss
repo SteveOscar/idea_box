@@ -1,8 +1,12 @@
 body {
   text-align: center;
+  background-color: beige;
 }
 #update-title, #update-body {
   display: none;
+}
+.btn {
+  margin: 5px;
 }
 #idea-box {
   width: 550px;
@@ -32,6 +36,9 @@ input {
   display: block;
   margin: auto;
   background-color: cyan;
+  border-color: teal;
+  border-radius: 5px;
+  border-style:solid;
 }
 .search {
   position: relative;

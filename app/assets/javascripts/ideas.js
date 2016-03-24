@@ -22,9 +22,9 @@ function renderIdea(idea){
     "</p>" +
     "<input id='update-title' class='form-control' value='(New title)' type='text' id='idea-title'>" +
     "<input id='update-body' class='form-control' value='(New Body)' type='text' id='idea-title'>" +
-    "<button class='btn btn-default btn-xs delete-idea'>Delete</button>" +
-    "<button id='thumbs-up' class='btn btn-default btn-xs'>Thumbs Up</button>" +
-    "<button id='thumbs-down' class='btn btn-default btn-xs'>Thumbs Down</button>" +
+    "<button class='btn btn-default btn-xs delete-idea blue'>Delete</button>" +
+    "<button id='thumbs-up' class='btn btn-default btn-xs blue'><i class='material-icons'>thumb_up</i></button>" +
+    "<button id='thumbs-down' class='btn btn-default btn-xs blue'><i class='material-icons'>thumb_down</i></button>" +
     "</div>"
   )
 }
