@@ -7,17 +7,19 @@ class IdeaBoxSeleniumTest < ActionDispatch::IntegrationTest
     driver.navigate.to "http://localhost:3000"
 
     element = driver.find_element(:id, 'idea-title')
-    element.send_keys "Making a new idea"
+    element2 = driver.find_element(:id, 'idea-body')
+    element.send_keys "Snow Day"
+    element2.send_keys "Snow Day Body"
     driver.find_element(:id, 'create-idea').click
 
-    assert driver.find_element(:id=>"all-ideas").text.include? "Making a new idea"
+    assert driver.find_element(:id=>"all-ideas").text.include? "Snow Day"
   end
 
   test "edit idea" do
     driver = Selenium::WebDriver.for:firefox
     driver.navigate.to "http://localhost:3000"
 
-    element = driver.find_element(:class, "title#{Idea.first.id}")
+    element = driver.find_element(:class, "title")
     element.click
     element.send_keys "Editing a new idea"
     element.send_keys :enter
