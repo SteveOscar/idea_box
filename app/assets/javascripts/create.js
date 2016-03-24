@@ -25,6 +25,6 @@ function saveToDatabase(ideaParams) {
   })
 }
 function clearInputs() {
-  $('input#idea-title').val('New Title');
-  $('input#idea-body').val('New Idea');
+  $('input#idea-title').val('');
+  $('input#idea-body').val('');
 }

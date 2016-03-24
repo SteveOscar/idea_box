@@ -29,6 +29,11 @@ function renderIdea(idea){
   )
 }
 
+function truncateBody(body) {
+  if (body.length < 101) {return body}
+  if (body.length > 100) {return body.truncate(100)}
+}
+
 function convertQuality(quality) {
   if (quality == 0) {return 'Swill' };
   if (quality == 1) {return 'Plausible' };
